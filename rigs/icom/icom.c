@@ -2091,7 +2091,7 @@ pbwidth_t icom_get_dsp_flt(RIG *rig, rmode_t mode)
     if (res_len == 3 && resbuf[0] == C_CTL_MEM)
     {
         int i;
-        i = (int) from_bcd(resbuf + 2, 2);
+        i = (RIG_MODEL_X6100 == rig->caps->rig_model) ? (uint8_t) resbuf[2] : (int) from_bcd(resbuf + 2, 2);
         rig_debug(RIG_DEBUG_TRACE, "%s: i=%d, [0]=%02x, [1]=%02x, [2]=%02x, [3]=%02x\n",
                   __func__, i, resbuf[0], resbuf[1], resbuf[2], resbuf[3]);
 
